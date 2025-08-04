@@ -1,4 +1,4 @@
-ARG NODE_VERSION=22
+ARG NODE_VERSION=18
 ARG N8N_VERSION=1.24.0
 ARG LAUNCHER_VERSION=1.1.3
 ARG TARGETPLATFORM=linux/amd64
@@ -45,7 +45,8 @@ ENV SHELL=/bin/sh
 WORKDIR /home/node
 
 # Install n8n and its dependencies
-RUN npm install -g n8n@${N8N_VERSION} && \
+RUN rm -f /usr/local/bin/n8n && \
+    npm install -g n8n@${N8N_VERSION} && \
     cd /usr/local/lib/node_modules/n8n && \
     npm rebuild sqlite3 && \
     npm install @napi-rs/canvas && \
