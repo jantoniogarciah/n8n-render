@@ -14,6 +14,7 @@ services:
       - N8N_PORT=5678
       - N8N_PROTOCOL=http
       - WEBHOOK_URL=http://localhost:5678
+      - N8N_ENCRYPTION_KEY=6ece9c201f8e4d5f8e3c1f6b9e8d7c5a4b3f2e1d0c9b8a7
     volumes:
       - n8n_data:/home/node/.n8n
 
