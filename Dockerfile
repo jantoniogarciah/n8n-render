@@ -15,12 +15,20 @@ RUN apk update && \
 RUN mkdir -p /home/node/.n8n && \
     chown -R node:node /home/node
 
+# Ensure n8n is properly installed and available
+RUN npm install -g n8n@1.24.0 && \
+    npm cache clean --force
+
 # Switch back to node user
 USER node
 
 # Set environment variables
 ENV NODE_ENV=production
 ENV N8N_PORT=5678
+ENV PATH="/usr/local/lib/node_modules/n8n/bin:${PATH}"
+
+# Verify n8n installation
+RUN n8n --version
 
 # Expose the default n8n port
 EXPOSE 5678
