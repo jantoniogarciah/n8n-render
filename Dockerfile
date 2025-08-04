@@ -5,12 +5,11 @@ FROM docker.io/n8nio/n8n:1.24.0
 USER root
 
 # Install any additional dependencies if needed
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends \
+RUN apk update && \
+    apk add --no-cache \
     python3 \
-    build-essential && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
+    build-base && \
+    rm -rf /var/cache/apk/*
 
 # Create required directories and set permissions
 RUN mkdir -p /home/node/.n8n && \
